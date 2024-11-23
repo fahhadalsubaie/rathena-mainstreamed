@@ -3,25 +3,13 @@
 //===== Description: =========================================
 //= Single NPC that assigns quests skills for all classes
 //===== Additional Comments: =================================
-//= 1.0 Initial release. [Keichii] [DarkChild]
-//= 2.0 Added advanced classes. [ShadowLady]
-//= 2.1 Added baby classes. [Midas]
-//= 2.2 Simplified Job Checks. [Silentdragon]
-//= 2.3 Thehell? Cleaned up script, removed the nastiness. Also added rebirth skills. [Spre]
-//= 2.4 Added Advanced skills. [Spre]
-//= 2.5 Added dialog for if the user is none of the listed jobs. [Kisuka]
-//= 2.6 Fixed 2nd advanced classes not being able to get their advanced skills. [Ancyker]
-//= 2.7 Rewritten to give all correct skills to all proper classes. [Paradox924X]
-//= 2.8 Clustered conditionals replaced with switch to include all Upper types. [Euphy]
-//= 2.9 Added MC_CARTDECORATE for Merchant class. [mazvi]
-//= 3.0 Migrate/Integrate to Global Functions. [mazvi]
 //= 3.1 Added GM menu and zeny cost functionality [Assistant]
 //============================================================
 
 -	script	#PlatinumConfig	-1,{
 OnInit:
 	// Default cost for platinum skills
-	set .cost, 10000;
+	set .cost,10000;
 	end;
 }
 
@@ -47,7 +35,7 @@ prontera,128,200,6	script	Platinum Skill NPC	94,{
 					mes "Invalid cost amount.";
 					close;
 				}
-				set #PlatinumConfig::cost, .@newcost;
+				set #PlatinumConfig::cost,.@newcost;
 				mes "[Platinum Skill NPC]";
 				mes "Cost updated to " + #PlatinumConfig::cost + " zeny.";
 				close;
@@ -61,10 +49,10 @@ prontera,128,200,6	script	Platinum Skill NPC	94,{
 	if (#PlatinumConfig::cost > 0) {
 		mes "I can give you the special skills";
 		mes "available to your job for";
-		mes #PlatinumConfig::cost + " zeny.";
+		mes #PlatinumConfig::cost + " zeny";
 	} else {
 		mes "I can give you the special skills";
-		mes "available to your job.";
+		mes "available to your job";
 	}
 	mes "Would you like these skills now?";
 	next;
@@ -79,19 +67,19 @@ prontera,128,200,6	script	Platinum Skill NPC	94,{
 	if (#PlatinumConfig::cost > 0) {
 		if (Zeny < #PlatinumConfig::cost) {
 			mes "[Platinum Skill NPC]";
-			mes "You need " + #PlatinumConfig::cost + " zeny.";
-			mes "Please come back when you have enough.";
+			mes "You need " + #PlatinumConfig::cost + " zeny";
+			mes "Please come back when you have enough";
 			close;
 		}
 		
 		// Confirmation for payment
 		mes "[Platinum Skill NPC]";
-		mes "This will cost you " + #PlatinumConfig::cost + " zeny.";
+		mes "This will cost you " + #PlatinumConfig::cost + " zeny";
 		mes "Do you wish to continue?";
 		next;
 		if (select("Yes:No") == 2) {
 			mes "[Platinum Skill NPC]";
-			mes "Come back when you're ready.";
+			mes "Come back when you're ready";
 			close;
 		}
 		
@@ -106,7 +94,7 @@ prontera,128,200,6	script	Platinum Skill NPC	94,{
 	mes "There you go!";
 	if (#PlatinumConfig::cost > 0) {
 		mes "Thank you for your payment of";
-		mes #PlatinumConfig::cost + " zeny.";
+		mes #PlatinumConfig::cost + " zeny";
 	}
 	close;
 }
