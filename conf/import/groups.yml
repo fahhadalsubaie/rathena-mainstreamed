@@ -71,8 +71,6 @@ Body:
       whodrops: true
       time: true
       jailtime: true
-      hominfo: true
-      homstats: true
     Permissions:
       can_trade: true
       can_party: true
