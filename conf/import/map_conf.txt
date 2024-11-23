@@ -1,0 +1,5 @@
+userid: fahhadispro
+passwd: gZa44deOdKvVQEb
+
+char_ip: 57.129.14.135
+map_ip: 57.129.14.135

@@ -39,3 +39,41 @@
 Header:
   Type: PLAYER_GROUP_DB
   Version: 1
+
+Body:
+  - Id: 0
+    Name: Player
+    Level: 0
+    Commands:
+      changedress: false
+      showexp: true
+      rates: true
+      commands: true
+      charcommands: true
+      uptime: true
+      showdelay: true
+      refresh: true
+      noask: true
+      noks: true
+      autoloot: true
+      alootid: true
+      autoloottype: true
+      autotrade: true
+      request: true
+      go: true
+      warp: true
+      hominfo: true
+      homstats: true
+      showzeny: true
+      whereis: true
+      mobinfo: true
+      iteminfo: true
+      whodrops: true
+      time: true
+      jailtime: true
+      hominfo: true
+      homstats: true
+    Permissions:
+      can_trade: true
+      can_party: true
+      attendance: false
