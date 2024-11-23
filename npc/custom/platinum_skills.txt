@@ -11,24 +11,102 @@
 //= 2.4 Added Advanced skills. [Spre]
 //= 2.5 Added dialog for if the user is none of the listed jobs. [Kisuka]
 //= 2.6 Fixed 2nd advanced classes not being able to get their advanced skills. [Ancyker]
-//= 2.7 Rewrote to give all correct skills to all proper classes. [Paradox924X]
+//= 2.7 Rewritten to give all correct skills to all proper classes. [Paradox924X]
 //= 2.8 Clustered conditionals replaced with switch to include all Upper types. [Euphy]
 //= 2.9 Added MC_CARTDECORATE for Merchant class. [mazvi]
 //= 3.0 Migrate/Integrate to Global Functions. [mazvi]
+//= 3.1 Added GM menu and zeny cost functionality [Assistant]
 //============================================================
 
+-	script	#PlatinumConfig	-1,{
+OnInit:
+	// Default cost for platinum skills
+	set .cost, 10000;
+	end;
+}
+
 prontera,128,200,6	script	Platinum Skill NPC	94,{
+	// GM Menu - only accessible to GMs with level 99
+	if (getgmlevel() >= 99) {
+		mes "[Platinum Skill NPC]";
+		mes "^FF0000GM Menu^000000";
+		mes "Current skill cost: " + #PlatinumConfig::cost + " zeny";
+		mes "What would you like to do?";
+		next;
+		switch(select("Access Normal Menu:Modify Skill Cost:Cancel")) {
+			case 1:
+				// Continue to normal menu
+				break;
+			case 2:
+				mes "[Platinum Skill NPC]";
+				mes "Enter new cost in zeny:";
+				next;
+				input .@newcost;
+				if (.@newcost < 0) {
+					mes "[Platinum Skill NPC]";
+					mes "Invalid cost amount.";
+					close;
+				}
+				set #PlatinumConfig::cost, .@newcost;
+				mes "[Platinum Skill NPC]";
+				mes "Cost updated to " + #PlatinumConfig::cost + " zeny.";
+				close;
+			case 3:
+				close;
+		}
+	}
+
+	// Regular menu
 	mes "[Platinum Skill NPC]";
-	mes "I can give you the special skills available to your job.";
+	if (#PlatinumConfig::cost > 0) {
+		mes "I can give you the special skills";
+		mes "available to your job for";
+		mes #PlatinumConfig::cost + " zeny.";
+	} else {
+		mes "I can give you the special skills";
+		mes "available to your job.";
+	}
 	mes "Would you like these skills now?";
 	next;
+
 	if (select("Yes Please:No") == 2) {
 		mes "[Platinum Skill NPC]";
 		mes "Have a nice day... >.>";
 		close;
 	}
+
+	// Check if player has enough zeny
+	if (#PlatinumConfig::cost > 0) {
+		if (Zeny < #PlatinumConfig::cost) {
+			mes "[Platinum Skill NPC]";
+			mes "You need " + #PlatinumConfig::cost + " zeny.";
+			mes "Please come back when you have enough.";
+			close;
+		}
+		
+		// Confirmation for payment
+		mes "[Platinum Skill NPC]";
+		mes "This will cost you " + #PlatinumConfig::cost + " zeny.";
+		mes "Do you wish to continue?";
+		next;
+		if (select("Yes:No") == 2) {
+			mes "[Platinum Skill NPC]";
+			mes "Come back when you're ready.";
+			close;
+		}
+		
+		// Deduct zeny
+		Zeny -= #PlatinumConfig::cost;
+	}
+
+	// Give skills
 	callfunc "F_GetPlatinumSkills";
+	
 	mes "[Platinum Skill NPC]";
 	mes "There you go!";
+	if (#PlatinumConfig::cost > 0) {
+		mes "Thank you for your payment of";
+		mes #PlatinumConfig::cost + " zeny.";
+	}
 	close;
 }
