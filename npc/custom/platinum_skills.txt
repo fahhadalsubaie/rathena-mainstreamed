@@ -3,13 +3,25 @@
 //===== Description: =========================================
 //= Single NPC that assigns quests skills for all classes
 //===== Additional Comments: =================================
-//= 3.1 Added GM menu and zeny cost functionality [Assistant]
+//= 1.0 Initial release. [Keichii] [DarkChild]
+//= 2.0 Added advanced classes. [ShadowLady]
+//= 2.1 Added baby classes. [Midas]
+//= 2.2 Simplified Job Checks. [Silentdragon]
+//= 2.3 Thehell? Cleaned up script, removed the nastiness. Also added rebirth skills. [Spre]
+//= 2.4 Added Advanced skills. [Spre]
+//= 2.5 Added dialog for if the user is none of the listed jobs. [Kisuka]
+//= 2.6 Fixed 2nd advanced classes not being able to get their advanced skills. [Ancyker]
+//= 2.7 Rewritten to give all correct skills to all proper classes. [Paradox924X]
+//= 2.8 Clustered conditionals replaced with switch to include all Upper types. [Euphy]
+//= 2.9 Added MC_CARTDECORATE for Merchant class. [mazvi]
+//= 3.0 Migrate/Integrate to Global Functions. [mazvi]
+//= 3.1 Added GM menu and zeny cost functionality [Cid]
 //============================================================
 
 -	script	PlatinumConfig	-1,{
 OnInit:
 	// Default cost for platinum skills
-	set .cost,10000;  // Using proper NPC variable
+	set .cost,10000;
 	end;
 }
 
@@ -44,7 +56,7 @@ prontera,128,200,6	script	Platinum Skill NPC	94,{
 		}
 	}
 
-	// Regular menu
+	// Normal Player menu
 	mes "[Platinum Skill NPC]";
 	.@cost = getvariableofnpc(.cost,"PlatinumConfig");
 	if (.@cost > 0) {
