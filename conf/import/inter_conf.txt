@@ -34,7 +34,7 @@ emblem_transparency_limit: 80
 login_server_ip: 57.129.14.135
 login_server_port: 3306
 login_server_id: fahhad
-login_server_pw: Klimnas1133!
+login_server_pw: m~{&)r^pZzSzx[5OFgL,
 login_server_db: sro
 login_codepage:
 login_case_sensitive: no
@@ -42,7 +42,7 @@ login_case_sensitive: no
 ipban_db_ip: 57.129.14.135
 ipban_db_port: 3306
 ipban_db_id: fahhad
-ipban_db_pw: Klimnas1133!
+ipban_db_pw: m~{&)r^pZzSzx[5OFgL,
 ipban_db_db: sro
 ipban_codepage:
 
@@ -50,28 +50,28 @@ ipban_codepage:
 char_server_ip: 57.129.14.135
 char_server_port: 3306
 char_server_id: fahhad
-char_server_pw: Klimnas1133!
+char_server_pw: m~{&)r^pZzSzx[5OFgL,
 char_server_db: sro
 
 // MySQL Map Server
 map_server_ip: 57.129.14.135
 map_server_port: 3306
 map_server_id: fahhad
-map_server_pw: Klimnas1133!
+map_server_pw: m~{&)r^pZzSzx[5OFgL,
 map_server_db: sro
 
 // MySQL Web Server
 web_server_ip: 57.129.14.135
 web_server_port: 3306
 web_server_id: fahhad
-web_server_pw: Klimnas1133!
+web_server_pw: m~{&)r^pZzSzx[5OFgL,
 web_server_db: sro
 
 // MySQL Log Database
 log_db_ip: 57.129.14.135
 log_db_port: 3306
 log_db_id: fahhad
-log_db_pw: Klimnas1133!
+log_db_pw: m~{&)r^pZzSzx[5OFgL,
 log_db_db: sro
 log_codepage:
 log_login_db: loginlog
