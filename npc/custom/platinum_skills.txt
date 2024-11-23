@@ -3,13 +3,13 @@
 //===== Description: =========================================
 //= Single NPC that assigns quests skills for all classes
 //===== Additional Comments: =================================
-//= 3.1 Added GM menu and zeny cost functionality [Cid]
+//= 3.1 Added GM menu and zeny cost functionality [Assistant]
 //============================================================
 
 -	script	PlatinumConfig	-1,{
 OnInit:
 	// Default cost for platinum skills
-	setarray .@costs[0],10000;
+	set .cost,10000;  // Using proper NPC variable
 	end;
 }
 
@@ -18,7 +18,7 @@ prontera,128,200,6	script	Platinum Skill NPC	94,{
 	if (getgmlevel() >= 99) {
 		mes "[Platinum Skill NPC]";
 		mes "^FF0000GM Menu^000000";
-		mes "Current skill cost: " + getvariableofnpc(.@costs[0],"PlatinumConfig") + " zeny";
+		mes "Current skill cost: " + getvariableofnpc(.cost,"PlatinumConfig") + " zeny";
 		mes "What would you like to do?";
 		next;
 		switch(select("Access Normal Menu:Modify Skill Cost:Cancel")) {
@@ -35,9 +35,9 @@ prontera,128,200,6	script	Platinum Skill NPC	94,{
 					mes "Invalid cost amount.";
 					close;
 				}
-				set getvariableofnpc(.@costs[0],"PlatinumConfig"), .@newcost;
+				set getvariableofnpc(.cost,"PlatinumConfig"), .@newcost;
 				mes "[Platinum Skill NPC]";
-				mes "Cost updated to " + getvariableofnpc(.@costs[0],"PlatinumConfig") + " zeny";
+				mes "Cost updated to " + getvariableofnpc(.cost,"PlatinumConfig") + " zeny";
 				close;
 			case 3:
 				close;
@@ -46,7 +46,7 @@ prontera,128,200,6	script	Platinum Skill NPC	94,{
 
 	// Regular menu
 	mes "[Platinum Skill NPC]";
-	.@cost = getvariableofnpc(.@costs[0],"PlatinumConfig");
+	.@cost = getvariableofnpc(.cost,"PlatinumConfig");
 	if (.@cost > 0) {
 		mes "I can give you the special skills";
 		mes "available to your job for";
