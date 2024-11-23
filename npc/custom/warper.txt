@@ -222,141 +222,158 @@ if (@menu_idx == 0) {
 }
 
 .@choice = select(@menu_str$) - 1;
-goto @menu_map$[.@choice];
-
-RE_T6:
-    if (!.RE_Mode) end;  // Failsafe
-    Restrict("Brasilis");
-    Go("brasilis",196,217);
-
-T7:
-    Go("comodo",209,143);
-
-RE_T8:
-    if (!.RE_Mode) end;  // Failsafe
-    Restrict("RE");
-    Go("dewata",200,180);
-
-RE_T9:
-    Restrict("RE");
-    Go("ecl_in01",48,53);
-
-T10:
-    Go("einbech",63,35);
-
-T11:
-    Restrict("RE");
-    Go("einbroch",64,200);
-
-RE_T12:
-    Restrict("RE");
-    Go("dicastes01",198,187);
-
-T13:
-    Go("geffen",119,59);
-
-T14:
-    Go("hugel",96,145);
-
-RE_T15:
-    Restrict("RE");
-    Go("icecastle",185,212);
-
-T16:
-    Go("izlude",128,(checkre(3)?146:114));
-
-T17:
-    Go("jawaii",251,132);
-
-T18:
-    Go("yuno",157,51);
-
-T19:
-    Go("gonryun",160,120);
-
-RE_T20:
-    Restrict("RE");
-    Go("lasagna",193,182);
-
-T21:
-    Go("lighthalzen",158,92);
-
-T22:
-    Go("louyang",217,100);
-
-T23:
-    Go("xmas",147,134);
-
-RE_T24:
-    Restrict("RE");
-    Go("malangdo",140,114);
-
-RE_T25:
-    Restrict("RE");
-    Go("malaya",231,200);
-
-T26:
-    Go("manuk",282,138);
-
-T27:
-    Go("mid_camp",210,288);
-
-RE_T28:
-    Restrict("RE");
-    Go("mora",55,146);
-
-T29:
-    Go("morocc",156,93);
-
-T30:
-    Go("moscovia",223,184);
-
-T31:
-    Go("nameless_i",256,215);
-
-T32:
-    Go("nameless_n",256,215);
-
-T33:
-    Go("niflheim",202,174);
-
-T34:
-    Go("payon",179,100);
-
-T35:
-    Go("rachel",130,110);
-
-T36:
-    Restrict("RE");
-    Go("harboro1",298,206);
-
-T37:
-    Restrict("RE");
-    Go("sp_cor",160,166);
-
-T38:
-    Go("splendide",201,147);
-
-T39:
-    Go("thor_camp",246,68);
-
-T40:
-    Go("umbala",97,153);
-
-RE_T41:
-    Restrict("RE");
-    Go("ba_maison",72,146);
-
-T42:
-    Go("veins",216,123);
-
-RE_T43:
-    Restrict("RE");
-    Go("verus04",123,250);
-
-RE_T44:
-    Restrict("RE");
-    Go("wolfvill",144,144);
+switch(@menu_map$[.@choice]) {
+    case "T1":
+        Go("prontera",155,183);
+        break;
+    case "T2":
+        Go("alberta",28,234);
+        break;
+    case "T3":
+        Go("aldebaran",140,131);
+        break;
+    case "T4":
+        Go("amatsu",198,84);
+        break;
+    case "T5":
+        Go("ayothaya",208,166);
+        break;
+    case "RE_T6":
+        if (!.RE_Mode) end;
+        Restrict("Brasilis");
+        Go("brasilis",196,217);
+        break;
+    case "T7":
+        Go("comodo",209,143);
+        break;
+    case "RE_T8":
+        if (!.RE_Mode) end;
+        Restrict("RE");
+        Go("dewata",200,180);
+        break;
+    case "RE_T9":
+        Restrict("RE");
+        Go("ecl_in01",48,53);
+        break;
+    case "T10":
+        Go("einbech",63,35);
+        break;
+    case "T11":
+        Restrict("RE");
+        Go("einbroch",64,200);
+        break;
+    case "RE_T12":
+        Restrict("RE");
+        Go("dicastes01",198,187);
+        break;
+    case "T13":
+        Go("geffen",119,59);
+        break;
+    case "T14":
+        Go("hugel",96,145);
+        break;
+    case "RE_T15":
+        Restrict("RE");
+        Go("icecastle",185,212);
+        break;
+    case "T16":
+        Go("izlude",128,(checkre(3)?146:114));
+        break;
+    case "T17":
+        Go("jawaii",251,132);
+        break;
+    case "T18":
+        Go("yuno",157,51);
+        break;
+    case "T19":
+        Go("gonryun",160,120);
+        break;
+    case "RE_T20":
+        Restrict("RE");
+        Go("lasagna",193,182);
+        break;
+    case "T21":
+        Go("lighthalzen",158,92);
+        break;
+    case "T22":
+        Go("louyang",217,100);
+        break;
+    case "T23":
+        Go("xmas",147,134);
+        break;
+    case "RE_T24":
+        Restrict("RE");
+        Go("malangdo",140,114);
+        break;
+    case "RE_T25":
+        Restrict("RE");
+        Go("malaya",231,200);
+        break;
+    case "T26":
+        Go("manuk",282,138);
+        break;
+    case "T27":
+        Go("mid_camp",210,288);
+        break;
+    case "RE_T28":
+        Restrict("RE");
+        Go("mora",55,146);
+        break;
+    case "T29":
+        Go("morocc",156,93);
+        break;
+    case "T30":
+        Go("moscovia",223,184);
+        break;
+    case "T31":
+        Go("nameless_i",256,215);
+        break;
+    case "T32":
+        Go("nameless_n",256,215);
+        break;
+    case "T33":
+        Go("niflheim",202,174);
+        break;
+    case "T34":
+        Go("payon",179,100);
+        break;
+    case "T35":
+        Go("rachel",130,110);
+        break;
+    case "T36":
+        Restrict("RE");
+        Go("harboro1",298,206);
+        break;
+    case "T37":
+        Restrict("RE");
+        Go("sp_cor",160,166);
+        break;
+    case "T38":
+        Go("splendide",201,147);
+        break;
+    case "T39":
+        Go("thor_camp",246,68);
+        break;
+    case "T40":
+        Go("umbala",97,153);
+        break;
+    case "RE_T41":
+        Restrict("RE");
+        Go("ba_maison",72,146);
+        break;
+    case "T42":
+        Go("veins",216,123);
+        break;
+    case "RE_T43":
+        Restrict("RE");
+        Go("verus04",123,250);
+        break;
+    case "RE_T44":
+        Restrict("RE");
+        Go("wolfvill",144,144);
+        break;
+}
+end;
 
 // --------------------------------------------------
 	Fields:
