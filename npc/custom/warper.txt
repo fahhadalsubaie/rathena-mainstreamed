@@ -24,7 +24,7 @@ function BuildMenu {
     // Clear previous menu
     @menu_str$ = "";
     @menu_idx = 0;
-    @menu_map$ = "";
+    deletearray @menu_map$[0], getarraysize(@menu_map$);
     
     // Loop through menu options
     for (.@i = 0; .@i < getargcount(); .@i += 2) {
@@ -32,14 +32,15 @@ function BuildMenu {
         .@label$ = getarg(.@i + 1);
         
         // Skip RE-only options if RE_Mode is false
-        if (compare(.@label$, "RE_")) {
+        if (compare(.@label$, "RE_") == 1) {
             if (!.RE_Mode) continue;
-            .@label$ = substr(.@label$, 3); // Remove RE_ prefix
+            .@label$ = replacestr(.@label$, "RE_", ""); // Remove RE_ prefix
         }
         
         // Build menu string
-        if (@menu_str$ != "") @menu_str$ += ":";
-        @menu_str$ += .@name$;
+        if (@menu_str$ != "") 
+            @menu_str$ = @menu_str$ + ":";
+        @menu_str$ = @menu_str$ + .@name$;
         
         // Store label mapping
         @menu_map$[@menu_idx] = .@label$;
@@ -173,29 +174,29 @@ BuildMenu(
     "Aldebaran", "T3",
     "Amatsu", "T4",
     "Ayothaya", "T5",
-    "Brasilis", "RE_T6",  // RE-only option
+    "Brasilis", "RE_T6",
     "Comodo", "T7",
-    "Dewata", "RE_T8",    // RE-only option
-    "Eclage", "T9",
+    "Dewata", "RE_T8",
+    "Eclage", "RE_T9",
     "Einbech", "T10",
     "Einbroch", "T11",
-    "El Dicastes", "T12",
+    "El Dicastes", "RE_T12",
     "Geffen", "T13",
     "Hugel", "T14",
-    "Ice Castle", "T15",
+    "Ice Castle", "RE_T15",
     "Izlude", "T16",
     "Jawaii", "T17",
     "Juno", "T18",
     "Kunlun", "T19",
-    "Lasagna", "T20",
+    "Lasagna", "RE_T20",
     "Lighthalzen", "T21",
     "Luoyang", "T22",
     "Lutie", "T23",
-    "Malangdo", "T24",
-    "Malaya", "T25",
+    "Malangdo", "RE_T24",
+    "Malaya", "RE_T25",
     "Manuk", "T26",
     "Midgarts Expedition Camp", "T27",
-    "Mora", "T28",
+    "Mora", "RE_T28",
     "Morocc", "T29",
     "Moscovia", "T30",
     "Nameless Island (Day)", "T31",
@@ -203,18 +204,25 @@ BuildMenu(
     "Niflheim", "T33",
     "Payon", "T34",
     "Rachel", "T35",
-    "Rockridge", "T36",
-    "Special Security Area, Cor", "T37",
+    "Rockridge", "RE_T36",
+    "Special Security Area, Cor", "RE_T37",
     "Splendide", "T38",
     "Thor Camp", "T39",
     "Umbala", "T40",
-    "Varmundt's Mansion", "T41",
+    "Varmundt's Mansion", "RE_T41",
     "Veins", "T42",
-    "Verus Findspot", "T43",
-    "Wolf Village", "T44"
+    "Verus Findspot", "RE_T43",
+    "Wolf Village", "RE_T44"
 );
-.@choice = select(@menu_str$);
-goto @menu_map$[.@choice-1];
+
+if (@menu_idx == 0) {
+    mes "[Warper]";
+    mes "No available warps.";
+    close;
+}
+
+.@choice = select(@menu_str$) - 1;
+goto @menu_map$[.@choice];
 
 RE_T6:
     if (!.RE_Mode) end;  // Failsafe
@@ -229,7 +237,7 @@ RE_T8:
     Restrict("RE");
     Go("dewata",200,180);
 
-T9:
+RE_T9:
     Restrict("RE");
     Go("ecl_in01",48,53);
 
@@ -240,7 +248,7 @@ T11:
     Restrict("RE");
     Go("einbroch",64,200);
 
-T12:
+RE_T12:
     Restrict("RE");
     Go("dicastes01",198,187);
 
@@ -250,7 +258,7 @@ T13:
 T14:
     Go("hugel",96,145);
 
-T15:
+RE_T15:
     Restrict("RE");
     Go("icecastle",185,212);
 
@@ -266,7 +274,7 @@ T18:
 T19:
     Go("gonryun",160,120);
 
-T20:
+RE_T20:
     Restrict("RE");
     Go("lasagna",193,182);
 
@@ -279,11 +287,11 @@ T22:
 T23:
     Go("xmas",147,134);
 
-T24:
+RE_T24:
     Restrict("RE");
     Go("malangdo",140,114);
 
-T25:
+RE_T25:
     Restrict("RE");
     Go("malaya",231,200);
 
@@ -293,7 +301,7 @@ T26:
 T27:
     Go("mid_camp",210,288);
 
-T28:
+RE_T28:
     Restrict("RE");
     Go("mora",55,146);
 
@@ -335,18 +343,18 @@ T39:
 T40:
     Go("umbala",97,153);
 
-T41:
+RE_T41:
     Restrict("RE");
     Go("ba_maison",72,146);
 
 T42:
     Go("veins",216,123);
 
-T43:
+RE_T43:
     Restrict("RE");
     Go("verus04",123,250);
 
-T44:
+RE_T44:
     Restrict("RE");
     Go("wolfvill",144,144);
 
